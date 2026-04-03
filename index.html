@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efe Can Bor | Developer & Barista | Personal Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            card: '#0c0c0c',
+                            acc1: '#10b981', // Emerald - Developer Side
+                            acc2: '#f59e0b', // Amber - Barista Side
+                        }
+                    }
+                }
+            }
+        }
+
+        function copyEmail() {
+            navigator.clipboard.writeText('efe.bor.cv@gmail.com');
+            const btn = document.getElementById('email-text');
+            const originalText = btn.innerText;
+            btn.innerText = 'Adres Kopyalandı! 🚀';
+            setTimeout(() => { btn.innerText = originalText; }, 2000);
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
+
+        .bg-animate {
+            background: linear-gradient(-45deg, #050505, #0a0a0a, #0c0c0c, #050505);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .pro-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+        .pro-card:hover {
+            transform: scale(1.02) translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.3);
+            box-shadow: 0 15px 30px -10px rgba(16, 185, 129, 0.2);
+        }
+        .barista-hover:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            box-shadow: 0 15px 30px -10px rgba(245, 158, 11, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-brand-dark text-zinc-300 font-sans bg-animate min-h-screen">
+
+    <div class="container mx-auto max-w-2xl py-16 px-5 flex flex-col items-center">
+
+        <header class="text-center mb-10 flex flex-col items-center">
+            <div class="relative group mb-6">
+                <div class="absolute -inset-1 bg-gradient-to-r from-brand-acc1 to-brand-acc2 rounded-full opacity-30 group-hover:opacity-100 blur transition duration-700"></div>
+                <div class="relative w-32 h-32 rounded-full border-4 border-brand-dark p-1 bg-brand-dark overflow-hidden shadow-2xl">
+                    <img src="https://github.com/efecanbor.png" alt="Efe Can Bor" class="rounded-full w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                </div>
+                <span class="absolute bottom-2 right-2 w-6 h-6 bg-brand-acc1 border-4 border-brand-dark rounded-full shadow-lg"></span>
+            </div>
+
+            <h1 class="text-4xl font-extrabold text-white tracking-tighter mb-2">Efe Can Bor</h1>
+            
+            <div class="flex items-center gap-2 bg-brand-card border border-zinc-800 px-4 py-1.5 rounded-full shadow-inner mb-6">
+                <span class="w-2 h-2 bg-brand-acc1 rounded-full animate-pulse"></span>
+                <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.2em]">Open to Opportunities</span>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-6 max-w-sm">
+                <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">PHP</span>
+                <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">JS / Tailwind</span>
+                <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">WordPress</span>
+                <span class="text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">V60 Brewing</span>
+                <span class="text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">Latte Art</span>
+            </div>
+
+            <p class="text-zinc-500 max-w-md text-sm leading-relaxed px-4 italic">
+                Dijital dünyada kodlarla, gerçek dünyada kahve çekirdekleriyle sanat yapıyorum.
+            </p>
+        </header>
+
+        <section class="w-full mb-8">
+            <div class="pro-card bg-brand-card rounded-2xl p-6 border border-zinc-800/50 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-4 opacity-5">
+                    <i class="fab fa-github text-6xl"></i>
+                </div>
+                <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center gap-3">
+                        <i class="fab fa-github text-2xl text-white"></i>
+                        <h2 class="text-base font-semibold text-white tracking-tight">GitHub Activity</h2>
+                    </div>
+                    <a href="https://github.com/efecanbor" target="_blank" class="text-[10px] bg-zinc-800 text-zinc-400 px-3 py-1 rounded-full hover:text-brand-acc1 transition-colors uppercase font-bold tracking-widest">Explore →</a>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-brand-dark/40 rounded-xl p-4 border border-zinc-900 shadow-inner">
+                        <p class="text-2xl font-bold text-white tracking-tight">Active</p>
+                        <p class="text-[9px] text-zinc-600 uppercase mt-1 tracking-[0.2em] font-bold">Dev Status</p>
+                    </div>
+                    <div class="bg-brand-dark/40 rounded-xl p-4 border border-zinc-900 shadow-inner">
+                        <p class="text-2xl font-bold text-white tracking-tight">2026</p>
+                        <p class="text-[9px] text-zinc-600 uppercase mt-1 tracking-[0.2em] font-bold">Current Yr</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="w-full space-y-3 mb-12">
+            
+            <a href="https://linkedin.com/in/Efecanbor" target="_blank" class="pro-card bg-brand-card flex items-center p-4 rounded-xl group">
+                <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center mr-4 group-hover:bg-[#0077b5] transition-colors duration-300">
+                    <i class="fab fa-linkedin-in text-xl text-zinc-400 group-hover:text-white"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-sm font-semibold text-white group-hover:text-brand-acc1 transition-colors">LinkedIn</h3>
+                    <p class="text-[11px] text-zinc-600">Profesyonel bağlantılar ve özgeçmiş</p>
+                </div>
+                <i class="fas fa-external-link-alt text-zinc-800 text-[10px] group-hover:text-brand-acc1"></i>
+            </a>
+
+            <a href="https://instagram.com/Efecnbor_" target="_blank" class="pro-card barista-hover bg-brand-card flex items-center p-4 rounded-xl group border-l-4 border-l-brand-acc2">
+                <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center mr-4 group-hover:bg-brand-acc2 transition-colors duration-300">
+                    <i class="fas fa-coffee text-xl text-zinc-400 group-hover:text-white"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="text-sm font-semibold text-white group-hover:text-brand-acc2 transition-colors">Nitelikli Kahve Sanatı</h3>
+                    <p class="text-[11px] text-zinc-600">Latte Art ve 3. Dalga Kahve Kültürü</p>
+                </div>
+                <i class="fab fa-instagram text-zinc-800 text-sm group-hover:text-brand-acc2"></i>
+            </a>
+
+            <button onclick="copyEmail()" class="pro-card bg-brand-card w-full flex items-center p-4 rounded-xl group border-l-4 border-l-brand-acc1 text-left">
+                <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center mr-4 group-hover:bg-brand-acc1 transition-colors duration-300">
+                    <i class="fas fa-envelope text-xl text-zinc-400 group-hover:text-white"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 id="email-text" class="text-sm font-semibold text-white group-hover:text-brand-acc1 transition-colors">Bana E-posta Gönder</h3>
+                    <p class="text-[11px] text-zinc-600 font-mono">efe.bor.cv@gmail.com</p>
+                </div>
+                <i class="fas fa-copy text-zinc-800 text-[10px] group-hover:text-brand-acc1"></i>
+            </button>
+
+        </section>
+
+        <footer class="w-full text-center mt-auto pt-10 border-t border-zinc-900/50">
+            <p class="text-zinc-700 text-[10px] font-mono tracking-[0.4em] uppercase mb-1">
+                Handcrafted by Efe Can Bor
+            </p>
+            <p class="text-zinc-800 text-[9px] font-bold">
+                BUILT WITH CODE & CAFFEINE &copy; 2026
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
