@@ -1,205 +1,196 @@
 <!DOCTYPE html>
-<html lang="tr" class="dark">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Efe Can Bor | Full-Stack Developer & Barista</title>
+    <title>Efe Can Bor | Digital Artisan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: { sans: ['Poppins', 'sans-serif'] },
-                    colors: {
-                        brand: {
-                            dark: '#050505',
-                            card: '#0c0c0c',
-                            acc1: '#10b981', // Emerald - Developer Side
-                            acc2: '#f59e0b', // Amber - Barista Side
-                        }
-                    }
-                }
-            }
-        }
-
-        async function copyEmail(event) {
-            if (event) event.preventDefault();
-            const email = 'efe.bor.cv@gmail.com';
-            const btnTitle = document.getElementById('email-title');
-            const originalTitle = 'Bana E-posta Gönder';
-
-            try {
-                await navigator.clipboard.writeText(email);
-                btnTitle.innerText = 'Adres Kopyalandı! 🚀';
-                btnTitle.classList.add('text-brand-acc1');
-                setTimeout(() => {
-                    btnTitle.innerText = originalTitle;
-                    btnTitle.classList.remove('text-brand-acc1');
-                }, 2000);
-            } catch (err) {
-                console.error('Kopyalama başarısız:', err);
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@900&family=Hanken+Grotesk:wght@400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #10b981; }
-
-        .bg-animate {
-            background: linear-gradient(-45deg, #050505, #0a0a0a, #0c0c0c, #050505);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        :root { --paper: #f7f4f0; --ink: #1a1918; --accent: #eb5e28; }
+        
+        body { 
+            background-color: var(--paper); color: var(--ink); 
+            font-family: 'Hanken Grotesk', sans-serif; margin: 0; overflow-x: hidden;
         }
 
-        .pro-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(255,255,255,0.03);
-            cursor: pointer;
+        body::before {
+            content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.04; pointer-events: none; z-index: 999;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
-        .pro-card:hover {
-            transform: scale(1.02) translateY(-5px);
-            border-color: rgba(16, 185, 129, 0.3);
-            box-shadow: 0 15px 30px -10px rgba(16, 185, 129, 0.2);
+
+        .display-type { font-family: 'Unbounded', sans-serif; text-transform: uppercase; word-break: break-all; }
+        .mono-type { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; }
+        
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
+        section { min-height: 100vh; display: flex; align-items: center; padding: 0 8vw; position: relative; }
+        .huge-text { font-size: clamp(4rem, 14vw, 11rem); line-height: 0.85; letter-spacing: -0.04em; }
+
+        .marquee-section {
+            padding: 2.5rem 0; background: var(--paper);
+            border-top: 1px solid rgba(26, 25, 24, 0.1);
+            border-bottom: 1px solid rgba(26, 25, 24, 0.1);
+            overflow: hidden; position: relative;
         }
-        .barista-hover:hover {
-            border-color: rgba(245, 158, 11, 0.3);
-            box-shadow: 0 15px 30px -10px rgba(245, 158, 11, 0.2);
+        .marquee-wrapper { display: flex; width: max-content; animation: scroll 40s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        .marquee-item { 
+            display: flex; align-items: center; 
+            font-size: 2.5rem; font-family: 'Unbounded'; 
+            padding: 0 1.5rem; color: var(--accent); 
+        }
+        .marquee-star { color: var(--ink); opacity: 0.2; margin: 0 1.5rem; font-size: 1.5rem; }
+
+        /* SIFIR HATA GRID YAPISI */
+        .project-row-grid {
+            display: grid;
+            grid-template-cols: 1fr; /* Mobilde alt alta */
+            gap: 2rem;
+            width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            .project-row-grid {
+                grid-template-cols: 5fr 4fr 3fr; /* Başlık Geniş | Açıklama Orta | Linkler Dar */
+                align-items: center;
+            }
+        }
+
+        .skill-pill { 
+            padding: 4px 10px; border: 1px solid rgba(26, 25, 24, 0.15); 
+            border-radius: 100px; font-size: 0.55rem; font-family: 'JetBrains Mono';
+            text-transform: uppercase; white-space: nowrap;
         }
     </style>
 </head>
+<body>
+    <canvas id="hero-canvas"></canvas>
 
-<body class="bg-brand-dark text-zinc-300 font-sans bg-animate min-h-screen">
-
-    <div class="container mx-auto max-w-2xl py-16 px-5 flex flex-col items-center">
-
-        <header class="text-center mb-10 flex flex-col items-center">
-            <div class="relative group mb-6">
-                <div class="absolute -inset-1 bg-gradient-to-r from-brand-acc1 to-brand-acc2 rounded-full opacity-30 group-hover:opacity-100 blur transition duration-700"></div>
-                <div class="relative w-32 h-32 rounded-full border-4 border-brand-dark p-1 bg-brand-dark overflow-hidden shadow-2xl">
-                    <img src="https://github.com/efecanbor.png" alt="Efe Can Bor" class="rounded-full w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+    <main>
+        <!-- 01. INTRO -->
+        <section id="hero">
+            <div class="w-full">
+                <p class="mono-type mb-12 text-[#eb5e28]">[ 01. INTRO ]</p>
+                <h1 class="display-type huge-text italic">EFE CAN<br>BOR<span class="text-[#eb5e28]">.</span></h1>
+                <div class="flex justify-between items-start border-t border-zinc-200 pt-8 w-full mt-8">
+                    <div class="mono-type uppercase text-zinc-500 leading-relaxed">Junior Full-Stack Developer<br>& Expert Barista</div>
+                    <div class="mono-type text-right uppercase opacity-60">Located in Izmir, TR<br>Updated in 2026</div>
                 </div>
-                <span class="absolute bottom-2 right-2 w-6 h-6 bg-brand-acc1 border-4 border-brand-dark rounded-full shadow-lg"></span>
             </div>
-
-            <h1 class="text-4xl font-extrabold text-white tracking-tighter mb-2 font-mono">Efe Can Bor</h1>
-            
-            <div class="flex items-center gap-2 bg-brand-card border border-zinc-800 px-4 py-1.5 rounded-full shadow-inner mb-6">
-                <span class="w-2 h-2 bg-brand-acc1 rounded-full animate-pulse"></span>
-                <span class="text-[10px] font-mono text-zinc-400 uppercase tracking-[0.2em]">Open to Opportunities</span>
-            </div>
-
-            <div class="flex flex-wrap justify-center gap-2 mb-6 max-w-sm">
-                <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">PHP</span>
-                <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">JS / Tailwind</span>
-                <span class="text-[9px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">WordPress</span>
-                <span class="text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">V60 Brewing</span>
-                <span class="text-[9px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-md font-bold uppercase tracking-wider">Latte Art</span>
-            </div>
-
-            <p class="text-zinc-500 max-w-md text-sm leading-relaxed px-4 italic">
-                Bilgisayar Programcılığı Mezunu | Full-Stack Web Developer
-            </p>
-        </header>
-
-        <section class="w-full mb-8">
-            <a href="https://github.com/efecanbor" target="_blank" class="block pro-card bg-brand-card rounded-2xl p-6 border border-zinc-800/50 relative overflow-hidden group">
-                <div class="absolute top-0 right-0 p-4 opacity-5">
-                    <i class="fab fa-github text-6xl"></i>
-                </div>
-                <div class="flex items-center justify-between mb-5">
-                    <div class="flex items-center gap-3">
-                        <i class="fab fa-github text-2xl text-white"></i>
-                        <h2 class="text-base font-semibold text-white tracking-tight">GitHub Activity</h2>
-                    </div>
-                    <span class="text-[10px] bg-zinc-800 text-zinc-400 px-3 py-1 rounded-full group-hover:text-brand-acc1 transition-colors uppercase font-bold tracking-widest">Explore →</span>
-                </div>
-                
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-brand-dark/40 rounded-xl p-4 text-center border border-zinc-900 shadow-inner">
-                        <p class="text-2xl font-bold text-white tracking-tight">Active</p>
-                        <p class="text-[9px] text-zinc-600 uppercase mt-1 tracking-[0.2em] font-bold">Dev Status</p>
-                    </div>
-                    <div class="bg-brand-dark/40 rounded-xl p-4 border border-zinc-900 shadow-inner text-center">
-                        <p class="text-2xl font-bold text-white tracking-tight">2026</p>
-                        <p class="text-[9px] text-zinc-600 uppercase mt-1 tracking-[0.2em] font-bold">Current Year</p>
-                    </div>
-                </div>
-            </a>
         </section>
 
-        <section class="w-full space-y-3 mb-12">
+        <!-- 02. SKILLS -->
+        <div class="marquee-section">
+            <div class="marquee-wrapper">
+                <div class="marquee-item">
+                    <span>JavaScript</span><span class="marquee-star">×</span><span>TypeScript</span><span class="marquee-star">×</span>
+                    <span>React</span><span class="marquee-star">×</span><span>PHP 8</span><span class="marquee-star">×</span>
+                    <span>MySQL</span><span class="marquee-star">×</span><span>Node.js</span><span class="marquee-star">×</span>
+                </div>
+                <div class="marquee-item">
+                    <span>JavaScript</span><span class="marquee-star">×</span><span>TypeScript</span><span class="marquee-star">×</span>
+                    <span>React</span><span class="marquee-star">×</span><span>PHP 8</span><span class="marquee-star">×</span>
+                    <span>MySQL</span><span class="marquee-star">×</span><span>Node.js</span><span class="marquee-star">×</span>
+                </div>
+            </div>
+        </div>
 
-            <a href="Efe_Can_Bor_CV.pdf" target="_blank" class="pro-card bg-brand-card flex items-center p-4 rounded-xl group border-l-4 border-l-brand-acc1">
-                <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center mr-4 group-hover:bg-brand-acc1 transition-colors duration-300">
-                    <i class="fas fa-file-pdf text-xl text-zinc-400 group-hover:text-white"></i>
-                </div>
-                <div class="flex-1">
-                    <h3 class="text-sm font-semibold text-white group-hover:text-brand-acc1 transition-colors">Özgeçmişimi Görüntüle</h3>
-                    <p class="text-[11px] text-zinc-600">PDF formatında incele veya indir</p>
-                </div>
-                <i class="fas fa-download text-zinc-800 text-[10px] group-hover:text-brand-acc1"></i>
-            </a>
+        <!-- 03. SELECTED WORKS -->
+        <section id="projects" class="flex-col items-start justify-start py-32">
+            <p class="mono-type mb-16 uppercase text-[#eb5e28] tracking-widest">[ 03. SELECTED WORKS ]</p>
             
-            <a href="https://linkedin.com/in/info-efecanbor" target="_blank" class="pro-card bg-brand-card flex items-center p-4 rounded-xl group">
-                <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center mr-4 group-hover:bg-[#0077b5] transition-colors duration-300">
-                    <i class="fab fa-linkedin-in text-xl text-zinc-400 group-hover:text-white"></i>
-                </div>
-                <div class="flex-1">
-                    <h3 class="text-sm font-semibold text-white group-hover:text-brand-acc1 transition-colors">LinkedIn</h3>
-                    <p class="text-[11px] text-zinc-600">Profesyonel bağlantılar</p>
-                </div>
-                <i class="fas fa-external-link-alt text-zinc-800 text-[10px] group-hover:text-brand-acc1"></i>
-            </a>
-
-            <a href="https://instagram.com/Efecanbor" target="_blank" class="pro-card barista-hover bg-brand-card flex items-center p-4 rounded-xl group border-l-4 border-l-brand-acc2">
-                <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center mr-4 group-hover:bg-brand-acc2 transition-colors duration-300">
-                    <i class="fas fa-coffee text-xl text-zinc-400 group-hover:text-white"></i>
-                </div>
-                <div class="flex-1">
-                    <div class="flex items-center gap-2">
-                        <h3 class="text-sm font-semibold text-white group-hover:text-brand-acc2 transition-colors">Nitelikli Kahve Sanatı</h3>
-                        <span class="text-[9px] bg-brand-acc2/20 text-brand-acc2 px-1.5 py-0.5 rounded uppercase font-bold tracking-tighter">Senior Barista</span>
+            <!-- BARISTAFLOW -->
+            <div class="project-row w-full py-16 border-t border-zinc-200">
+                <div class="project-row-grid">
+                    <div>
+                        <h3 class="display-type text-4xl lg:text-6xl italic hover:text-[#eb5e28] transition-colors leading-none">BaristaFlow</h3>
+                        <p class="mono-type text-[0.6rem] opacity-40 mt-4 tracking-widest uppercase">N° 001 / Full-Stack System</p>
                     </div>
-                    <p class="text-[11px] text-zinc-600">Latte Art ve Operasyonel Süreçler</p>
+                    <!-- pl-12 ve lg:pl-24 ile yazıyı gerçekten sağa ittik -->
+                    <div class="opacity-70 text-lg italic leading-relaxed lg:pl-24 border-l-0 lg:border-l border-zinc-100">
+                        Kafe envanter yönetimini dijitalleştiren, stok kritik seviyeye düştüğünde Telegram API üzerinden anlık bildirim gönderen otomasyon paneli.
+                    </div>
+                    <div class="flex flex-col items-end gap-6">
+                        <div class="flex flex-wrap justify-end gap-2">
+                            <span class="skill-pill">React</span><span class="skill-pill">Node.js</span><span class="skill-pill">MySQL</span>
+                        </div>
+                        <a href="https://github.com/efecanbor/barista-flow" target="_blank" class="mono-type border-b border-ink pb-1 hover:text-[#eb5e28] hover:border-[#eb5e28] transition-all">VIEW SOURCE ↗</a>
+                    </div>
                 </div>
-                <i class="fab fa-instagram text-zinc-800 text-sm group-hover:text-brand-acc2"></i>
-            </a>
-
-            <div onclick="copyEmail(event)" class="pro-card bg-brand-card w-full flex items-center p-4 rounded-xl group border-l-4 border-l-brand-acc1 text-left cursor-pointer">
-                <div class="w-10 h-10 bg-zinc-900 rounded-lg flex items-center justify-center mr-4 group-hover:bg-brand-acc1 transition-colors duration-300">
-                    <i class="fas fa-envelope text-xl text-zinc-400 group-hover:text-white"></i>
-                </div>
-                <div class="flex-1">
-                    <h3 id="email-title" class="text-sm font-semibold text-white transition-colors duration-300">Bana E-posta Gönder</h3>
-                    <p class="text-[11px] text-zinc-600 font-mono">efe.bor.cv@gmail.com</p>
-                </div>
-                <i class="fas fa-copy text-zinc-800 text-[10px] group-hover:text-brand-acc1"></i>
             </div>
 
+            <!-- FINANCETRACKER -->
+            <div class="project-row w-full py-16 border-t border-zinc-200">
+                <div class="project-row-grid">
+                    <div>
+                        <h3 class="display-type text-4xl lg:text-6xl italic text-[#eb5e28] leading-none">FinanceTracker</h3>
+                        <p class="mono-type text-[0.6rem] opacity-40 mt-4 tracking-widest uppercase">N° 002 / Data Dashboard</p>
+                    </div>
+                    <div class="opacity-70 text-lg italic leading-relaxed lg:pl-24 border-l-0 lg:border-l border-zinc-100">
+                        Altın, döviz ve kripto piyasalarını tek dashboard'da toplayan, canlı veri akışlı ve portföy hesaplama algoritmalı takip sistemi.
+                    </div>
+                    <div class="flex flex-col items-end gap-6">
+                        <div class="flex flex-wrap justify-end gap-2">
+                            <span class="skill-pill">TypeScript</span><span class="skill-pill">API</span><span class="skill-pill">Chart.js</span>
+                        </div>
+                        <a href="https://github.com/efecanbor/finance-tracker" target="_blank" class="mono-type border-b border-ink pb-1 hover:text-[#eb5e28] hover:border-[#eb5e28] transition-all">VIEW SOURCE ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTEGRATED E-COM -->
+            <div class="project-row w-full py-16 border-t border-b border-zinc-200">
+                <div class="project-row-grid">
+                    <div>
+                        <h3 class="display-type text-4xl lg:text-6xl italic hover:text-[#eb5e28] transition-colors leading-none">Integrated E-Com</h3>
+                        <p class="mono-type text-[0.6rem] opacity-40 mt-4 tracking-widest uppercase">N° 003 / Backend Engine</p>
+                    </div>
+                    <div class="opacity-70 text-lg italic leading-relaxed lg:pl-24 border-l-0 lg:border-l border-zinc-100">
+                        PHP 8 tabanlı, güvenli admin paneline sahip, dinamik stok yönetimi ve sipariş takibi sunan Full-Stack e-ticaret altyapısı.
+                    </div>
+                    <div class="flex flex-col items-end gap-6">
+                        <div class="flex flex-wrap justify-end gap-2">
+                            <span class="skill-pill">PHP 8</span><span class="skill-pill">SQL</span><span class="skill-pill">Auth</span>
+                        </div>
+                        <a href="https://github.com/efecanbor/integrated-ecommerce-panel" target="_blank" class="mono-type border-b border-ink pb-1 hover:text-[#eb5e28] hover:border-[#eb5e28] transition-all">VIEW SOURCE ↗</a>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <footer class="w-full text-center mt-auto pt-10 border-t border-zinc-900/50">
-            <p class="text-zinc-700 text-[10px] font-mono tracking-[0.4em] uppercase mb-1">
-                Handcrafted by Efe Can Bor
-            </p>
-            <p class="text-zinc-800 text-[9px] font-bold">
-                BUILT WITH CODE & CAFFEINE &copy; 2026
-            </p>
-        </footer>
+        <!-- 04. CONTACT -->
+        <section id="contact" class="flex-col items-start justify-center py-32">
+            <p class="mono-type mb-16 uppercase text-[#eb5e28]">[ 04. CONTACT ]</p>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 w-full mb-24">
+                <div class="md:col-span-8">
+                    <h2 class="display-type text-5xl md:text-7xl italic leading-none mb-8">TEKNİK DİSİPLİN<br>VE AKADEMİK<span class="text-[#eb5e28]">+</span><br>VİZYON.</h2>
+                    <p class="text-xl opacity-70 max-w-2xl italic">Yazılım geliştirme sürecini bir zanaat olarak görüyorum. İzmir'de modern web teknolojileriyle fonksiyonel projeler inşa ederken, Bilgisayar Programcılığı eğitimimi akademik bir üst seviyeye taşımak için disiplinli bir tempoda çalışmaya devam ediyorum.</p>
+                </div>
+                <div class="md:col-span-4 flex flex-col justify-end space-y-4">
+                    <p class="mono-type uppercase opacity-40">Get in touch</p>
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=efe.bor.cv@gmail.com" 
+   target="_blank" 
+   class="display-type text-2xl hover:text-[#eb5e28] transition-colors tracking-tighter">
+   efe.bor.cv@gmail.com
+</a>                    <div class="flex flex-wrap gap-6 pt-4">
+                        <a href="Efe_Can_Bor_CV.pdf" target="_blank" class="mono-type text-[#eb5e28] border-b border-[#eb5e28] pb-1 hover:opacity-70 transition-opacity">DOWNLOAD CV</a>
+                        <a href="https://github.com/efecanbor" target="_blank" class="mono-type hover:text-[#eb5e28]">GITHUB</a>
+                        <a href="https://www.linkedin.com/in/info-efecanbor/" target="_blank" class="mono-type hover:text-[#eb5e28]">LINKEDIN</a>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center border-t border-zinc-200 pt-12 w-full mt-auto">
+                <p class="mono-type opacity-30">© 2026 EFE CAN BOR</p>
+                <p class="mono-type opacity-30">BUILT WITH PASSION & CAFFEINE</p>
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="mono-type hover:text-[#eb5e28] transition-colors">BACK TO TOP ↑</button>
+            </div>
+        </section>
+    </main>
 
-    </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script type="module" src="./app.js"></script>
 </body>
 </html>
